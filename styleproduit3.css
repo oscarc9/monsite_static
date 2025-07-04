@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #1E1E1E;
+    color: white;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 20px;
+  }
+  
+  .logo {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .navbar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+    gap: 20px;
+  }
+  
+  .navbar li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+  }
+  
+  .main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .user {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+  }
+  
+  .menu-icon {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .panier {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  
+  .panier:hover {
+    border-bottom: 2px solid limegreen;
+    color: limegreen;
+  }
+  
+  #menu-toggle {
+    display: none;
+  }
+  
+  .navbar a:hover {
+    border-bottom: 2px solid limegreen;
+    color: limegreen;
+  }
+  
+  .user:hover {
+    border-bottom: 2px solid limegreen;
+    color: limegreen;
+    transition: all 0.3s ease;
+  }
+  
+  body {
+    background-color: #1E1E1E;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+        right: 0;
+        left: auto;
+        transform: none;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        background: #333;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 20px;
+        z-index: 10;
+        border-top: 1px solid #444;
+    }
+  
+    #menu-toggle:checked ~ .navbar {
+        display: flex;
+    }
+  
+    .menu-icon {
+        display: block;
+    }
+  }
+  
+  /* CONTENEUR PRINCIPAL */
+  main {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #2E2E2E;
+    border: 1px solid #2E2E2E;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    border-radius: 20px;
+  }
+  
+  /* COLONNE GAUCHE : Galerie images */
+  .product-images {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Cache les inputs radio */
+  input[name="image-selector"] {
+    display: none;
+  }
+  
+  /* Container pour les images principales */
+  .main-img-container {
+    width: 100%;
+    max-width: 450px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #2E2E2E;
+  }
+  
+  /* Toutes les images principales */
+  .main-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Affiche l'image correspondant au radio sélectionné */
+  #micro1:checked ~ .main-img-container .micro1,
+  #micro2:checked ~ .main-img-container .micro2,
+  #micro3:checked ~ .main-img-container .micro3,
+  #micro4:checked ~ .main-img-container .micro4,
+  #micro5:checked ~ .main-img-container .micro5 {
+    opacity: 1;
+  }
+  
+  .thumbnails {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .thumb-label {
+    cursor: pointer;
+  }
+  
+  .thumb1, .thumb2, .thumb3, .thumb4, .thumb5 {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid #1E1E1E;
+    border-radius: 4px;
+    background-color: #2E2E2E;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  
+  .thumb-label:hover img {
+    transform: scale(1.1);
+    border-color: limegreen;
+  }
+  
+  /* Bordure verte sur la miniature active */
+  #micro1:checked ~ .thumbnails .thumb1,
+  #micro2:checked ~ .thumbnails .thumb2,
+  #micro3:checked ~ .thumbnails .thumb3,
+  #micro4:checked ~ .thumbnails .thumb4,
+  #micro5:checked ~ .thumbnails .thumb5 {
+    border-color: limegreen;
+  }
+  
+  /* COLONNE DROITE : Détails produit */
+  .product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  
+  .product-details h1 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .product-details .price {
+    font-size: 1.5rem;
+    color: limegreen;
+    margin-bottom: 15px;
+  }
+  
+  .product-details .description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: white;
+  }
+  
+  .add-to-cart {
+    margin-top: 25px;
+  }
+  
+  .add-to-cart button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: limegreen;
+    color: #1E1E1E;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .add-to-cart button:hover {
+    background-color: #50e450;
+  }
+  
+  /* Responsivité basique */
+  @media (max-width: 800px) {
+    main {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-images,
+    .product-details {
+      width: 100%;
+    }
+    
+    .main-img-container {
+      height: 350px;
+    }
+  }
+  
+  @media (min-width: 1700px) {
+    main {
+      max-width: 1300px;
+      height: 500px;
+    }
+    
+    main .add-to-cart {
+      margin-top: 125px;
+    }
+  }
+  
+  .quantite { 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    height: 50px;
+  }
+  
+  .quantite input {
+    height: 45px;
+    width: 50px;
+    background-color: #1E1E1E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+  }

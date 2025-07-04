@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="styleproduit2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>souris</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_bag" />
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="logo"></a>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <ul class="navbar">
+            <li><a href="index.html">Acceuil</a></li>
+            <li><a href="Produits.html">Produits</a></li>
+            <li><a href="Logiciel.html">Logiciel</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="main">
+            <a href="panier.html" class="panier"><span class="material-symbols-outlined">shopping_bag</span></i>Panier</a>
+            <a href="connexion.html" class="user"><i class="ri-user-fill"></i>Connexion</a>
+            <label for="menu-toggle" class="menu-icon"><i class="bx bx-menu"></i></label>
+        </div>
+    </header>
+
+    <main>
+    <!-- COLONNE GAUCHE : Galerie d'images -->
+    <div class="product-images">
+      <!-- Inputs radio cachés pour contrôler l'affichage -->
+      <input type="radio" name="image-selector" id="souris1" checked>
+      <input type="radio" name="image-selector" id="souris2">
+      <input type="radio" name="image-selector" id="souris3">
+      <input type="radio" name="image-selector" id="souris4">
+      <input type="radio" name="image-selector" id="souris5">
+
+      <!-- Container des images principales -->
+      <div class="main-img-container">
+        <img class="main-img souris1" src="souris1.png" alt="Souris 1">
+        <img class="main-img souris2" src="souris2.png" alt="Souris 2">
+        <img class="main-img souris3" src="souris3.png" alt="Souris 3">
+        <img class="main-img souris4" src="souris4.png" alt="Souris 4">
+        <img class="main-img souris5" src="souris5.png" alt="Souris 5">
+      </div>
+
+      <!-- Miniatures (thumbnails) -->
+      <div class="thumbnails">
+        <label for="souris1" class="thumb-label">
+          <img class="thumb1" src="souris1.png" alt="Miniature 1">
+        </label>
+        <label for="souris2" class="thumb-label">
+          <img class="thumb2" src="souris2.png" alt="Miniature 2">
+        </label>
+        <label for="souris3" class="thumb-label">
+          <img class="thumb3" src="souris3.png" alt="Miniature 3">
+        </label>
+        <label for="souris4" class="thumb-label">
+          <img class="thumb4" src="souris4.png" alt="Miniature 4">
+        </label>
+        <label for="souris5" class="thumb-label">
+          <img class="thumb5" src="souris5.png" alt="Miniature 5">
+        </label>
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE : Détails du produit -->
+    <div class="product-details">
+      <h1>Logitech pro x superlight 2</h1>
+      <div class="price">129,99 €</div>
+      <div class="description">
+        <p>
+            La souris Logitech Pro X Superlight 2 est une souris sans fil ergonomique et légère, conçue pour un usage professionnel. Elle offre une précision optimale et une autonomie de 70 heures, grâce à son capteur laser de 10000 DPI. Elle est également équipée d'un design minimaliste et de touches personnalisables, pour un usage confortable et efficace.
+        </p>
+      </div>
+
+      <div class="add-to-cart">
+        <form id="addToCartForm">
+          <input type="hidden" name="product_id" value="2"> <!-- id du produit -->    
+          <div class="quantite">
+            <button type="submit">Ajouter au panier</button>
+            <input type="number" name="quantity" value="1" min="1" id="quantity">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const product = {
+        id: 2,
+        name: 'Logitech pro x superlight 2',
+        price: 129.99,
+        quantity: quantity
+      };
+      
+      // Récupérer le panier actuel
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Vérifier si le produit existe déjà dans le panier
+      const existingProduct = cart.find(item => item.id === product.id);
+      
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        cart.push(product);
+      }
+      
+      // Sauvegarder le panier
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Afficher une confirmation
+      alert('Produit ajouté au panier !');
+    });
+  </script>
+</body>
+</html> 

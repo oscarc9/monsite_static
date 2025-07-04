@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="styleproduit.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x60 pro</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_bag" />
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="logo"></a>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <ul class="navbar">
+            <li><a href="index.html">Acceuil</a></li>
+            <li><a href="Produits.html">Produits</a></li>
+            <li><a href="Logiciel.html">Logiciel</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="main">
+            <a href="panier.html" class="panier"><span class="material-symbols-outlined">shopping_bag</span></i>Panier</a>
+            <a href="connexion.html" class="user"><i class="ri-user-fill"></i>Connexion</a>
+            <label for="menu-toggle" class="menu-icon"><i class="bx bx-menu"></i></label>
+        </div>
+    </header>
+
+    <main>
+    <!-- COLONNE GAUCHE : Galerie d'images -->
+    <div class="product-images">
+      <!-- Inputs radio cachés pour contrôler l'affichage -->
+      <input type="radio" name="image-selector" id="img1" checked>
+      <input type="radio" name="image-selector" id="img2">
+      <input type="radio" name="image-selector" id="img3">
+      <input type="radio" name="image-selector" id="img4">
+      <input type="radio" name="image-selector" id="img5">
+
+      <!-- Container des images principales -->
+      <div class="main-img-container">
+        <img class="main-img img1" src="img1.png" alt="Image 1">
+        <img class="main-img img2" src="img2.png" alt="Image 2">
+        <img class="main-img img3" src="img3.png" alt="Image 3">
+        <img class="main-img img4" src="img4.png" alt="Image 4">
+        <img class="main-img img5" src="img5.png" alt="Image 5">
+      </div>
+
+      <!-- Miniatures (thumbnails) -->
+      <div class="thumbnails">
+        <label for="img1" class="thumb-label">
+          <img class="thumb1" src="img1.png" alt="Miniature 1">
+        </label>
+        <label for="img2" class="thumb-label">
+          <img class="thumb2" src="img2.png" alt="Miniature 2">
+        </label>
+        <label for="img3" class="thumb-label">
+          <img class="thumb3" src="img3.png" alt="Miniature 3">
+        </label>
+        <label for="img4" class="thumb-label">
+          <img class="thumb4" src="img4.png" alt="Miniature 4">
+        </label>
+        <label for="img5" class="thumb-label">
+          <img class="thumb5" src="img5.png" alt="Miniature 5">
+        </label>
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE : Détails du produit -->
+    <div class="product-details">
+      <h1>Logitech x60 pro</h1>
+      <div class="price">149,99 €</div>
+      <div class="description">
+        <p>
+            Le Logitech x60 pro est un clavier ergonomique pour les gamers. Il est conçu pour offrir une expérience de jeu optimale, avec des touches réactives et une précision de pointe.
+            Il est équipé d'un système de régulation de la pression des touches, qui permet de réduire le bruit et d'augmenter la durée de vie du clavier.
+        </p>
+      </div>
+
+      <div class="add-to-cart">
+        <form id="addToCartForm">
+          <input type="hidden" name="product_id" value="1"> <!-- id du produit -->
+          <div class="quantite">
+            <button type="submit">Ajouter au panier</button>
+            <input type="number" name="quantity" value="1" min="1" id="quantity">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const product = {
+        id: 1,
+        name: 'Logitech x60 pro',
+        price: 149.99,
+        quantity: quantity
+      };
+      
+      // Récupérer le panier actuel
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Vérifier si le produit existe déjà dans le panier
+      const existingProduct = cart.find(item => item.id === product.id);
+      
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        cart.push(product);
+      }
+      
+      // Sauvegarder le panier
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Afficher une confirmation
+      alert('Produit ajouté au panier !');
+    });
+  </script>
+</body>
+</html> 

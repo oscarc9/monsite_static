@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="styleproduit3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>micro</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_bag" />
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="logo"></a>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <ul class="navbar">
+            <li><a href="index.html">Acceuil</a></li>
+            <li><a href="Produits.html">Produits</a></li>
+            <li><a href="Logiciel.html">Logiciel</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="main">
+            <a href="panier.html" class="panier"><span class="material-symbols-outlined">shopping_bag</span></i>Panier</a>
+            <a href="connexion.html" class="user"><i class="ri-user-fill"></i>Connexion</a>
+            <label for="menu-toggle" class="menu-icon"><i class="bx bx-menu"></i></label>
+        </div>
+    </header>
+
+    <main>
+    <!-- COLONNE GAUCHE : Galerie d'images -->
+    <div class="product-images">
+      <!-- Inputs radio cachés pour contrôler l'affichage -->
+      <input type="radio" name="image-selector" id="micro1" checked>
+      <input type="radio" name="image-selector" id="micro2">
+      <input type="radio" name="image-selector" id="micro3">
+      <input type="radio" name="image-selector" id="micro4">
+      <input type="radio" name="image-selector" id="micro5">
+
+      <!-- Container des images principales -->
+      <div class="main-img-container">
+        <img class="main-img micro1" src="micro1.png" alt="Micro 1">
+        <img class="main-img micro2" src="micro2.png" alt="Micro 2">
+        <img class="main-img micro3" src="micro3.png" alt="Micro 3">
+        <img class="main-img micro4" src="micro4.png" alt="Micro 4">
+        <img class="main-img micro5" src="micro5.png" alt="Micro 5">
+      </div>
+
+      <!-- Miniatures (thumbnails) -->
+      <div class="thumbnails">
+        <label for="micro1" class="thumb-label">
+          <img class="thumb1" src="micro1.png" alt="Miniature 1">
+        </label>
+        <label for="micro2" class="thumb-label">
+          <img class="thumb2" src="micro2.png" alt="Miniature 2">
+        </label>
+        <label for="micro3" class="thumb-label">
+          <img class="thumb3" src="micro3.png" alt="Miniature 3">
+        </label>
+        <label for="micro4" class="thumb-label">
+          <img class="thumb4" src="micro4.png" alt="Miniature 4">
+        </label>
+        <label for="micro5" class="thumb-label">
+          <img class="thumb5" src="micro5.png" alt="Miniature 5">
+        </label>
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE : Détails du produit -->
+    <div class="product-details">
+      <h1>Logitech yeti studio</h1>
+      <div class="price">349,99 €</div>
+      <div class="description">
+        <p>
+                Le Logitech yeti studio est un micro pour les streamers. Il est conçu pour offrir une qualité de son optimale, avec un son clair et net.
+                Il est équipé d'un système de régulation de la pression des touches, qui permet de réduire le bruit et d'augmenter la durée de vie du clavier.
+        </p>
+      </div>
+
+      <div class="add-to-cart">
+        <form id="addToCartForm">
+          <input type="hidden" name="product_id" value="3"> <!-- id du produit -->
+          <div class="quantite">
+            <button type="submit">Ajouter au panier</button>
+            <input type="number" name="quantity" value="1" min="1" id="quantity">
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const product = {
+        id: 3,
+        name: 'Logitech yeti studio',
+        price: 349.99,
+        quantity: quantity
+      };
+      
+      // Récupérer le panier actuel
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Vérifier si le produit existe déjà dans le panier
+      const existingProduct = cart.find(item => item.id === product.id);
+      
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        cart.push(product);
+      }
+      
+      // Sauvegarder le panier
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Afficher une confirmation
+      alert('Produit ajouté au panier !');
+    });
+  </script>
+</body>
+</html> 
