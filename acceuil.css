@@ -7,12 +7,12 @@
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Gardez ceci pour placer le logo et les icônes aux extrémités */
     align-items: center;
     padding: 10px;
     background: #1E1E1E;
     color: white;
-    position: relative;
+    position: relative; /* IMPORTANT: Ajout de cette ligne */
     z-index: 10;
 }
 
@@ -30,9 +30,12 @@ header {
 }
 
 .navbar {
+    /* Ajout de ces propriétés pour un centrage parfait */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+
+    /* Vos styles existants */
     display: flex;
     list-style: none;
     gap: 20px;
@@ -57,10 +60,10 @@ header {
 }
 
 .menu-icon {
-    display: none;
+    display: none; /* Caché par défaut sur grand écran */
     font-size: 30px;
     color: white;
-    cursor: pointer;
+    cursor: pointer; /* Indique que c'est cliquable */
 }
 
 .panier {
@@ -76,8 +79,10 @@ header {
     color: limegreen;
 }
 
+
+
 #menu-toggle {
-    display: none;
+    display: none; /* La checkbox reste toujours invisible */
 }
 
 .navbar a:hover {
@@ -92,17 +97,50 @@ header {
 }
 
 body {
+    background-color: #1E1E1E;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar {
+        /* forcer à droite */
+        right: 0;
+        left: auto;
+        transform: none;
+        /* forcer à droite */
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        background: #333;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 20px;
+        z-index: 10;
+        border-top: 1px solid #444;
+    }
+
+    #menu-toggle:checked ~ .navbar {
+        display: flex; /* Affiche la navbar quand la checkbox est cochée */
+    }
+
+    .menu-icon {
+        display: block; /* Affiche l'icône du menu hamburger */
+    }
+
+}
+body {
     background: #121212;
     color: limegreen;
 }
 
 video {
     width: 100%;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 70px); /* Ajustez 70px si la hauteur du header change */
     object-fit: cover;
     display: block;
     filter: brightness(35%);
-    z-index: 1;
+    z-index: 1; /* En dessous du titre et des avis */
 }
 
 .titre {
@@ -113,7 +151,7 @@ video {
     font-size: 45px;
     color: white;
     text-align: center;
-    z-index: 2;
+    z-index: 2; /* Au-dessus de la vidéo */
 }
 
 .titre a {
@@ -124,12 +162,13 @@ video {
 .avis {
     display: flex;
     position: absolute;
-    z-index: 2;
+    z-index: 2; /* Au-dessus de la vidéo */
     top: 60%;
     left: 0;
     right: 0;
     justify-content: space-around;
     align-items: center;
+    /* width: 100%; /* S'assurer qu'il prend toute la largeur si besoin */
 }
 
 .avis1 {
@@ -223,7 +262,7 @@ video {
     border-radius: 20px;
 }
 
-.avis2, .avis3 {
+.avis2, .avis3 { /* Styles combinés si identiques */
     width: 500px;
     height: 300px;
     background-color: #333;
@@ -231,80 +270,12 @@ video {
     border: 1px solid #444;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        right: 0;
-        left: auto;
-        transform: none;
-        text-align: center;
-        position: absolute;
-        top: 100%;
-        background: #333;
-        flex-direction: column;
-        width: 200px;
-        display: none;
-        padding: 20px;
-        z-index: 10;
-        border-top: 1px solid #444;
-    }
 
-    #menu-toggle:checked ~ .navbar {
-        display: flex;
-    }
 
-    .menu-icon {
-        display: block;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-    
-    .avis {
-        flex-direction: column;
-        align-items: center;
-        top: 70%;
-        gap: 15px;
-        padding: 0 10px;
-        width: 100%;
-    }
-    
-    .avis1, .avis2, .avis3 {
-        width: calc(100vw - 20px);
-        max-width: 400px;
-        height: auto;
-        min-height: 200px;
-        overflow: hidden;
-    }
-    
-    .avis2 img, .avis3 img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        max-width: 100%;
-    }
-    
-    .avis1 img {
-        width: 100px;
-        height: 150px;
-    }
-    
-    .avis1 h3 {
-        left: 130px;
-    }
-    
-    .titre {
-        font-size: 20px;
-        margin-top: 70px;
-        max-width: calc(100vw - 20px);
-        padding: 0 10px;
-    }
-}
-
-@media (max-width: 900px) and (min-width: 769px) {
+@media (max-width: 900px) {
     .avis {
         align-items: center;
-        top: 70%;
+        top: 70%; /* Peut nécessiter ajustement si le titre change de taille */
         gap: 20px;
     }
     .avis1, .avis2, .avis3 {
@@ -317,22 +288,24 @@ video {
         width: 120px;
         height: 180px;
     }
-    .titre {
-        font-size: 25px;
-        margin-top: 70px;
+    .titre { /* Ces règles pour .titre pourraient entrer en conflit avec celles de 768px ou 600px */
+        font-size: 15px;
+        margin-top: 70px; /* Attention à ce margin-top si le header change de hauteur */
         max-width: 95vw;
     }
+
 }
 
-@media (max-width: 1500px) and (min-width: 901px) {
+@media (max-width: 1500px) {
     .titre {
         font-size: 30px;
     }
     .avis {
         flex-direction: column;
         align-items: center;
-        top: 70%;
+        top: 70%; /* Peut nécessiter ajustement si le titre change de taille */
         gap: 20px;
+
     }
     .avis1, .avis2, .avis3 {
         width: 90%;
@@ -341,6 +314,7 @@ video {
         min-height: 300px;
         position: relative;
     }
+    
 }
 
 @media (min-width: 1500px) {
@@ -355,6 +329,8 @@ video {
     }
 }
 
+
+/* Pas sur que ça marche */
 @media (hover: hover) and (pointer: fine) {
     .avis1:hover {
       transform: translateY(-5px);
